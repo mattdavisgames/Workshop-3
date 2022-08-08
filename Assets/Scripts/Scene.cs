@@ -40,6 +40,11 @@ public class Scene : MonoBehaviour
         this.debug.Ray(new Ray(Vector3.zero, NormalizedImageToWorldCoord(1f, 1f)), Color.blue);
 
         // Add more rays to visualise here...
+        for (int i = 0; i < image.Width; i++) {
+            for (int j = 0; j < image.Height; j++) {
+                this.debug.Ray(new Ray(Vector3.zero, NormalizedImageToWorldCoord((i + 0.5f) / image.Width, (j + 0.5f) / image.Height)), Color.white);
+            }
+        }
     }
 
     private void Render()
