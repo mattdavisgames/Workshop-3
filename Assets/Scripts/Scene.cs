@@ -50,6 +50,21 @@ public class Scene : MonoBehaviour
     private void Render()
     {
         // Render the image here...
+        for (int i = 0; i < image.Width; i++) {
+            for (int j = 0; j < image.Height; j++) {
+                var pixelCentre = NormalizedImageToWorldCoord((i + 0.5f) / image.Width, (j + 0.5f) / image.Height);
+                var ray = new Ray(Vector3.zero, pixelCentre);
+                var color = Color.black;
+                foreach (var sceneEntity in FindObjectsOfType<SceneEntity>()) {
+                    var hit = sceneEntity.Intersect(ray);
+                    if (hit != null) {
+                        color = sceneEntity.Color();
+                    }
+                }
+
+                image.SetPixel(i, j, color);
+            }
+        }
     }
 
     private Vector3 NormalizedImageToWorldCoord(float x, float y)
