@@ -10,9 +10,12 @@ public class SceneEntity : MonoBehaviour
         // Use the Unity Engine to calculate ray-entity intersection.
         // The built-in "Collider" component (base class) handles this for us:
         // - https://docs.unity3d.com/ScriptReference/Collider.html
-        var coll = GetComponentInChildren<Collider>();
-        var isHit = coll.Raycast(ray, out var hit, float.PositiveInfinity);
-        return isHit ? hit : null;
+        return null;
+
+
+        //var coll = GetComponentInChildren<Collider>();
+        //var isHit = coll.Raycast(ray, out var hit, float.PositiveInfinity);
+        //return isHit ? hit : null;
     }
     
     public Color Color()
