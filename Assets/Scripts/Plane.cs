@@ -19,9 +19,14 @@ public class Plane : SceneEntity
         var toPlane = center - ray.origin;
         var toPlaneDotNormal = Vector3.Dot(toPlane, normal);
         var rayDotNormal = Vector3.Dot(ray.direction, normal);
+
+        if (rayDotNormal < 0f) {
+            return null;
+        }
+
         var t = toPlaneDotNormal / rayDotNormal;
 
-        if (t > 0f && Vector3.Dot(ray.direction, normal) < 0f) {
+        if (t > 0f) {
             var hit = new RaycastHit();
             hit.distance = t;
             hit.point = ray.origin + t * ray.direction;
